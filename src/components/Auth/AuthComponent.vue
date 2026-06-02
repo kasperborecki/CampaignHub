@@ -1,8 +1,10 @@
 <template>
     <form class="w-full max-w-115 space-y-7" @submit.prevent>
         <header class="space-y-2 text-center">
-            <p class="text-3xl font-thin text-white pb-2">Witaj ponownie!</p>
-            <p class="text-lg font-bold text-slate-400 pb-8">Zaloguj się do swojego konta</p>
+            <p class="text-3xl font-thin text-white pb-2">{{ authType === 0 ? 'Witaj ponownie!' : 'Zarejestruj się' }}
+            </p>
+            <p class="text-lg font-bold text-slate-400 pb-3">{{ authType === 0 ? 'Zaloguj się do swojego konta' :
+                'Utwórz nowe konto' }}</p>
         </header>
 
         <div class="grid grid-cols-2 rounded-[10px] border border-white/15 bg-[#0d0e14] p-1">
@@ -75,8 +77,9 @@
                         aria-hidden="true">
                         @
                     </span>
-                    <input type="email" autocomplete="email" placeholder="Wpisz swój adres e-mail"
-                        class="h-12 w-full rounded-lg border border-white/15 bg-[#11131c] pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#a78bfa] focus:ring-2 focus:ring-[#5b2eff]/30" />
+                    <input autocomplete="email" placeholder="Wpisz swój adres e-mail"
+                        class="h-12 w-full rounded-lg border border-white/15 bg-[#11131c] pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#a78bfa] focus:ring-2 focus:ring-[#5b2eff]/30"
+                        v-model="form.email" />
                 </span>
             </label>
 
@@ -88,25 +91,82 @@
                         #
                     </span>
                     <input :type="marker" autocomplete="current-password" placeholder="Wpisz swoje hasło"
-                        class="h-12 w-full rounded-lg border border-white/15 bg-[#11131c] pl-10 pr-20 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#a78bfa] focus:ring-2 focus:ring-[#5b2eff]/30" />
+                        class="h-12 w-full rounded-lg border border-white/15 bg-[#11131c] pl-10 pr-20 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#a78bfa] focus:ring-2 focus:ring-[#5b2eff]/30"
+                        v-model="form.password" />
                     <button type="button" v-if="marker === 'password'"
                         class="absolute right-3 top-1/2 -translate-y-1/2 rounded px-2 py-1 text-xs font-semibold text-[#a78bfa] transition hover:text-white"
                         @click="toggleMarker">
                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" strokeWidth="2"
-                                d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
-                            <path stroke="currentColor" strokeWidth="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                                clip-rule="evenodd" />
                         </svg>
+
                     </button>
                     <button type="button" v-else
                         class="absolute right-3 top-1/2 -translate-y-1/2 rounded px-2 py-1 text-xs font-semibold text-[#a78bfa] transition hover:text-white"
                         @click="toggleMarker">
-
+                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="m4 15.6 3.055-3.056A4.913 4.913 0 0 1 7 12.012a5.006 5.006 0 0 1 5-5c.178.009.356.027.532.054l1.744-1.744A8.973 8.973 0 0 0 12 5.012c-5.388 0-10 5.336-10 7A6.49 6.49 0 0 0 4 15.6Z" />
+                            <path
+                                d="m14.7 10.726 4.995-5.007A.998.998 0 0 0 18.99 4a1 1 0 0 0-.71.305l-4.995 5.007a2.98 2.98 0 0 0-.588-.21l-.035-.01a2.981 2.981 0 0 0-3.584 3.583c0 .012.008.022.01.033.05.204.12.402.211.59l-4.995 4.983a1 1 0 1 0 1.414 1.414l4.995-4.983c.189.091.386.162.59.211.011 0 .021.007.033.01a2.982 2.982 0 0 0 3.584-3.584c0-.012-.008-.023-.011-.035a3.05 3.05 0 0 0-.21-.588Z" />
+                            <path
+                                d="m19.821 8.605-2.857 2.857a4.952 4.952 0 0 1-5.514 5.514l-1.785 1.785c.767.166 1.55.25 2.335.251 6.453 0 10-5.258 10-7 0-1.166-1.637-2.874-2.179-3.407Z" />
+                        </svg>
 
                     </button>
                 </span>
             </label>
+            <label class="block space-y-2" v-if="authType === 1">
+                <span class="text-sm font-medium text-slate-100">Hasło</span>
+                <span class="relative block">
+                    <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
+                        aria-hidden="true">
+                        #
+                    </span>
+                    <input :type="markerTwo" autocomplete="current-password" placeholder="Potwierdź hasło"
+                        class="h-12 w-full rounded-lg border border-white/15 bg-[#11131c] pl-10 pr-20 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#a78bfa] focus:ring-2 focus:ring-[#5b2eff]/30"
+                        v-model="form.confirmPassword" />
+                    <button type="button" v-if="markerTwo === 'password'"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 rounded px-2 py-1 text-xs font-semibold text-[#a78bfa] transition hover:text-white"
+                        @click="toggleMarkerTwo">
+                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                    </button>
+                    <button type="button" v-else
+                        class="absolute right-3 top-1/2 -translate-y-1/2 rounded px-2 py-1 text-xs font-semibold text-[#a78bfa] transition hover:text-white"
+                        @click="toggleMarkerTwo">
+                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="m4 15.6 3.055-3.056A4.913 4.913 0 0 1 7 12.012a5.006 5.006 0 0 1 5-5c.178.009.356.027.532.054l1.744-1.744A8.973 8.973 0 0 0 12 5.012c-5.388 0-10 5.336-10 7A6.49 6.49 0 0 0 4 15.6Z" />
+                            <path
+                                d="m14.7 10.726 4.995-5.007A.998.998 0 0 0 18.99 4a1 1 0 0 0-.71.305l-4.995 5.007a2.98 2.98 0 0 0-.588-.21l-.035-.01a2.981 2.981 0 0 0-3.584 3.583c0 .012.008.022.01.033.05.204.12.402.211.59l-4.995 4.983a1 1 0 1 0 1.414 1.414l4.995-4.983c.189.091.386.162.59.211.011 0 .021.007.033.01a2.982 2.982 0 0 0 3.584-3.584c0-.012-.008-.023-.011-.035a3.05 3.05 0 0 0-.21-.588Z" />
+                            <path
+                                d="m19.821 8.605-2.857 2.857a4.952 4.952 0 0 1-5.514 5.514l-1.785 1.785c.767.166 1.55.25 2.335.251 6.453 0 10-5.258 10-7 0-1.166-1.637-2.874-2.179-3.407Z" />
+                        </svg>
+
+                    </button>
+                </span>
+            </label>
+        </div>
+        <div v-if="errorBox" class="rounded bg-[#EF4444]/5 p-4 text-sm text-[#EF4444]/80 border border-[#EF4444]/20">
+            <p v-if="ruleErrors.email">● Nieprawidłowy adres email.</p>
+            <p v-if="ruleErrors.password">● Hasło musi mieć minimum 8 znaków, dużą i małą literę,
+                cyfrę oraz znak specjalny.</p>
+            <p v-if="authType === 1 && ruleErrors.confirmPassword">● Hasła nie są takie same.</p>
         </div>
 
         <div class="flex flex-wrap items-center justify-between gap-3">
@@ -126,13 +186,15 @@
                 <p class="text-[1em] font-semibold [user-select:none]">Zapamiętaj mnie</p>
             </label>
 
-            <button type="button" class="text-sm font-semibold text-[#a78bfa] transition hover:text-white">
+            <button v-if="authType === 0" type="button"
+                class="text-sm font-semibold text-[#a78bfa] transition hover:text-white">
                 Nie pamiętasz hasła?
             </button>
         </div>
 
         <button type="submit"
-            class="h-12 w-full rounded-lg bg-[#5b2eff] text-sm font-bold text-white shadow-lg shadow-[#5b2eff]/25 transition hover:bg-[#7047ff] focus:outline-none focus:ring-2 focus:ring-[#a78bfa] focus:ring-offset-2 focus:ring-offset-[#0d0e14]">
+            class="h-12 w-full rounded-lg bg-[#5b2eff] text-sm font-bold text-white shadow-lg shadow-[#5b2eff]/25 transition hover:bg-[#7047ff] focus:outline-none focus:ring-2 focus:ring-[#a78bfa] focus:ring-offset-2 focus:ring-offset-[#0d0e14] mb-6"
+            @click="AuthSubmit(authType === 0 ? 'login' : 'register')">
             {{ authType === 0 ? 'Zaloguj się' : 'Zarejestruj się' }}
         </button>
     </form>
@@ -140,11 +202,69 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { rules } from '../../utils/rules'
 
 const authType = ref(0)
 const marker = ref<'password' | 'text'>('password')
+const markerTwo = ref<'password' | 'text'>('password')
+const errorBox = ref(false)
+const isSubmitting = ref(false)
+
+const form = ref({
+    email: '',
+    password: '',
+    confirmPassword: '',
+})
+
+const ruleErrors = ref({
+    email: false,
+    password: false,
+    confirmPassword: false,
+})
 
 function toggleMarker() {
     marker.value = marker.value === 'password' ? 'text' : 'password'
+}
+
+function toggleMarkerTwo() {
+    markerTwo.value = markerTwo.value === 'password' ? 'text' : 'password'
+}
+
+const AuthSubmit = (type: 'login' | 'register') => {
+    validateForm()
+    console.log(ruleErrors.value)
+    console.log(type)
+    console.log(form.value)
+}
+
+const validateForm = () => {
+    const emailValid =
+        rules.required(form.value.email) &&
+        rules.email(form.value.email)
+
+    const passwordValid =
+        rules.required(form.value.password) &&
+        rules.password(form.value.password)
+
+    const confirmPasswordValid =
+        authType.value === 0 ||
+        (
+            rules.required(form.value.confirmPassword) &&
+            rules.password(form.value.confirmPassword) &&
+            rules.sameAs(form.value.password)(form.value.confirmPassword)
+        )
+
+    if (!emailValid || !passwordValid || !confirmPasswordValid) {
+        errorBox.value = true
+
+        ruleErrors.value = {
+            email: !emailValid,
+            password: !passwordValid,
+            confirmPassword: !confirmPasswordValid
+        }
+
+    } else {
+        errorBox.value = false
+    }
 }
 </script>

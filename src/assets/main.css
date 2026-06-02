@@ -1,5 +1,14 @@
 @import 'tailwindcss';
 
+html,
+body,
 #app {
   min-height: 100vh;
+  margin: 0;
+  background: #090c13;
+  overflow-x: hidden;
+}
+
+body {
+  color: #fff;
 }
