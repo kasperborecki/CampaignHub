@@ -7,8 +7,8 @@
         <p class="text-[46px] font-bold">Zarządzaj kampaniami z twórcami,
           <span class="text-[#5b2eff]">bez chaosu</span>
         </p>
-        <p class="text-[20px] font-thin text-gray-400">
-          Wszystko w jednym miejscu: kampanie, twócy, zadania, treści i bridy. Mniej klikania więcej efektów.
+        <p class="text-[20px] font-thin text-gray-300">
+          Wszystko w jednym miejscu: kampanie, twócy, zadania, treści i briefy. Mniej klikania <u>więcej efektów</u>.
         </p>
       </div>
     </section>
