@@ -1,5 +1,5 @@
 <template>
-    <form class="w-full max-w-115 space-y-7" @submit.prevent>
+    <form class="w-full space-y-7" @submit.prevent>
         <header class="space-y-2 text-center">
             <p class="text-3xl font-thin text-white pb-2">{{ authType === 0 ? 'Witaj ponownie!' : 'Zarejestruj się' }}
             </p>
@@ -203,7 +203,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { rules } from '../../utils/rules'
+import { useAuthHolderStore } from '@/stores/authHolder'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const authType = ref(0)
 const marker = ref<'password' | 'text'>('password')
 const markerTwo = ref<'password' | 'text'>('password')
@@ -232,9 +235,18 @@ function toggleMarkerTwo() {
 
 const AuthSubmit = (type: 'login' | 'register') => {
     validateForm()
-    console.log(ruleErrors.value)
-    console.log(type)
-    console.log(form.value)
+    if (!errorBox.value) {
+        isSubmitting.value = true
+
+        setTimeout(() => {
+            const authStore = useAuthHolderStore()
+            authStore.setToken('adawd67awd7aw89daw6dawd-dawdawd7aw8d-dw')
+            isSubmitting.value = false
+            if (authStore.isAuthenticated) {
+                router.push('/')
+            }
+        }, 2000)
+    }
 }
 
 const validateForm = () => {
