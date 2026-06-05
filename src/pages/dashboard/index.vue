@@ -1,8 +1,8 @@
 <template>
-    <div class="p-6 flex items-center justify-between h-[10%]">
+    <div class="px-6 pt-2 flex items-center justify-between h-[7%] mb-2">
         <div>
-            <p class="text-4xl font-semibold">Cześć, UserName! 👋</p>
-            <p class="text-gray-400 mt-2">Witaj w swoim panelu kampanii!</p>
+            <p class="text-3xl font-medium">Cześć, UserName! 👋</p>
+            <p class="text-gray-400 mt-1">Witaj w swoim panelu kampanii!</p>
         </div>
         <div class="flex items-center gap-4 -mt-6">
             <form
@@ -25,11 +25,28 @@
             </svg>
         </div>
     </div>
-    <DashboardStatsCardGroup class="px-6 max-h-[15%] max-w-full" />
+    <DashboardStatsCardGroup class="px-6 max-h-[13%] max-w-full" />
+    <div class="mx-8 mt-7 grid grid-cols-[3fr_2fr] items-start gap-6">
+        <div class="flex min-w-0 flex-col gap-6">
+            <DashboardCampaignCard class="h-[40vh] min-w-0" />
+
+            <DashboardTermsCard class="h-[30vh] min-w-0" />
+        </div>
+
+        <div class="flex min-w-0 flex-col gap-6">
+            <DashboardTaskCard class="h-[55vh] min-w-0" />
+
+            <DashboardActionsCard class="h-[15vh] min-w-0" />
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
+import DashboardActionsCard from '@/components/Card/DashboardActionsCard.vue';
+import DashboardCampaignCard from '@/components/Card/DashboardCampaignCard.vue';
 import DashboardStatsCardGroup from '@/components/Card/DashboardStatsCardGroup.vue';
+import DashboardTaskCard from '@/components/Card/DashboardTaskCard.vue';
+import DashboardTermsCard from '@/components/Card/DashboardTermsCard.vue';
 
 
 </script>
