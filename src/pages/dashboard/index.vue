@@ -34,9 +34,9 @@
         </div>
 
         <div class="flex min-w-0 flex-col gap-6">
-            <DashboardTaskCard class="h-[55vh] min-w-0" />
+            <DashboardTaskCard class="h-[50vh] min-w-0" />
 
-            <DashboardActionsCard class="h-[15vh] min-w-0" />
+            <DashboardActionsCard class="h-[20vh] min-w-0" />
         </div>
     </div>
 </template>
