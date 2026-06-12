@@ -25,7 +25,7 @@
             </svg>
         </div>
     </div>
-    <DashboardStatsCardGroup class="px-6 max-h-[13%] max-w-full" />
+    <DashboardStatsCardGroup class="w-full px-6" />
     <div class="mx-8 mt-7 grid grid-cols-[3fr_2fr] items-start gap-6">
         <div class="flex min-w-0 flex-col gap-6">
             <DashboardCampaignCard class="h-[40vh] min-w-0" />

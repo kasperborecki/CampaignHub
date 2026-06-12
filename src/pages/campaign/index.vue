@@ -52,7 +52,7 @@
     </div>
   </div>
   <div>
-    <CampaignStatCardGroup class="px-6 max-h-[13%] max-w-full" />
+    <CampaignStatCardGroup class="w-full px-6" />
     <div class="mt-3 ml-6 mr-8 flex items-center justify-between gap-8 border-b border-white/5">
       <div class="flex items-center justify-center">
         <button
@@ -102,7 +102,7 @@ const tabs = [
     count: '24',
   },
   {
-    label: 'W trakcie',;
+    label: 'W trakcie',
     value: 'inProgress',
     count: '8',
   },

@@ -8,7 +8,7 @@ export const campaignsResponse = {
       id: 'cmp_001',
       title: 'Summer Sale 2024',
       brand: 'BrandLab',
-      imageUrl: '/images/campaigns/summer-sale-2024.png',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCXgkq0_FGkTcreIP0e23D66bjhoP0WFVD-w&s',
       status: 'inProgress',
       platforms: ['Instagram', 'TikTok'],
       budget: {
@@ -46,7 +46,7 @@ export const campaignsResponse = {
       id: 'cmp_002',
       title: 'New Collection Launch',
       brand: 'StyleStore',
-      imageUrl: '/images/campaigns/new-collection.png',
+      imageUrl: 'https://www.ideoforce.pl/gfx/ideo-2015/pl/corekategorie/197/70.png',
       status: 'inProgress',
       platforms: ['Instagram'],
       budget: {
@@ -84,7 +84,7 @@ export const campaignsResponse = {
       id: 'cmp_003',
       title: 'Black Friday 2024',
       brand: 'EvoShop',
-      imageUrl: '/images/campaigns/black-friday-2024.png',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWYU4cNtvTE7hSZMkEUbufO1xAQSjwNx5g0Q&s',
       status: 'inProgress',
       platforms: ['Instagram', 'TikTok', 'YouTube'],
       budget: {
@@ -122,7 +122,7 @@ export const campaignsResponse = {
       id: 'cmp_004',
       title: 'Back to School',
       brand: 'BrandLab',
-      imageUrl: '/images/campaigns/back-to-school.png',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgRKeVU_nthKfwn0CGOkjR8pZEVB0d2nb9YQ&s',
       status: 'planned',
       platforms: ['Instagram', 'TikTok'],
       budget: {
@@ -160,7 +160,7 @@ export const campaignsResponse = {
       id: 'cmp_005',
       title: 'Spring Collection 2024',
       brand: 'StyleStore',
-      imageUrl: '/images/campaigns/spring-collection-2024.png',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsGga8FoiUIZgBHnlrpRvFFzIP6HLxwSlp2Q&s',
       status: 'closed',
       platforms: ['Instagram'],
       budget: {
@@ -198,7 +198,7 @@ export const campaignsResponse = {
       id: 'cmp_006',
       title: 'Winter Collection 2025',
       brand: 'StyleStore',
-      imageUrl: '/images/campaigns/Winter-collection-2025.png',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgRKeVU_nthKfwn0CGOkjR8pZEVB0d2nb9YQ&s',
       status: 'closed',
       platforms: ['Instagram'],
       budget: {
