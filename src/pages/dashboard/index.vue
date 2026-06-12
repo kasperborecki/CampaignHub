@@ -1,10 +1,10 @@
 <template>
-    <div class="px-6 pt-2 flex items-center justify-between h-[7%] mb-2">
+    <div class="px-6 pt-4 flex items-center justify-between h-[7%] mb-2">
         <div>
             <p class="text-3xl font-medium">Cześć, UserName! 👋</p>
             <p class="text-gray-400 mt-1">Witaj w swoim panelu kampanii!</p>
         </div>
-        <div class="flex items-center gap-4 -mt-6">
+        <div class="flex items-center gap-4">
             <form
                 class="flex bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm w-50 focus-within:w-100 transition-all">
                 <div aria-disabled="true" class="w-10 grid place-content-center">
@@ -47,6 +47,5 @@ import DashboardCampaignCard from '@/components/Card/DashboardCampaignCard.vue';
 import DashboardStatsCardGroup from '@/components/Card/DashboardStatsCardGroup.vue';
 import DashboardTaskCard from '@/components/Card/DashboardTaskCard.vue';
 import DashboardTermsCard from '@/components/Card/DashboardTermsCard.vue';
-
 
 </script>

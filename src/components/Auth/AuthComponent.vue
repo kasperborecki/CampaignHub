@@ -1,5 +1,5 @@
 <template>
-    <form class="w-full space-y-7" @submit.prevent>
+    <form class="w-full space-y-9 px-[15%]" @submit.prevent>
         <header class="space-y-2 text-center">
             <p class="text-3xl font-thin text-white pb-2">{{ authType === 0 ? 'Witaj ponownie!' : 'Zarejestruj się' }}
             </p>
